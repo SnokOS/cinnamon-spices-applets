@@ -1,0 +1,367 @@
+{
+    "layout1": {
+        "type": "layout",
+        "pages": [
+            "page_general",
+            "page_grid",
+            "page_template",
+            "page_allapps",
+            "page_typography",
+            "page_search",
+            "page_favs",
+            "page_info"
+        ],
+        "page_general": {
+            "type": "page",
+            "title": "General",
+            "sections": [
+                "sec_size"
+            ]
+        },
+        "page_grid": {
+            "type": "page",
+            "title": "Main Grid",
+            "sections": [
+                "sec_grid"
+            ]
+        },
+        "page_template": {
+            "type": "page",
+            "title": "Templates",
+            "sections": [
+                "sec_template"
+            ]
+        },
+        "page_allapps": {
+            "type": "page",
+            "title": "All Apps View",
+            "sections": [
+                "sec_allapps"
+            ]
+        },
+        "page_typography": {
+            "type": "page",
+            "title": "Typography",
+            "sections": [
+                "sec_font"
+            ]
+        },
+        "page_search": {
+            "type": "page",
+            "title": "Search Bar",
+            "sections": [
+                "sec_search"
+            ]
+        },
+        "page_favs": {
+            "type": "page",
+            "title": "Pinned Shortcuts",
+            "sections": [
+                "sec_favs"
+            ]
+        },
+        "page_info": {
+            "type": "page",
+            "title": "Info",
+            "sections": [
+                "sec_info"
+            ]
+        },
+        "sec_size": {
+            "type": "section",
+            "title": "Menu Dimensions & Background",
+            "keys": [
+                "menu-width",
+                "menu-height",
+                "menu-opacity",
+                "bg-color"
+            ]
+        },
+        "sec_grid": {
+            "type": "section",
+            "title": "Main App Grid",
+            "keys": [
+                "grid-columns",
+                "grid-icon-size",
+                "grid-item-width",
+                "grid-item-padding",
+                "grid-item-radius",
+                "grid-show-label"
+            ]
+        },
+        "sec_template": {
+            "type": "section",
+            "title": "Display Template",
+            "keys": [
+                "app-template"
+            ]
+        },
+        "sec_allapps": {
+            "type": "section",
+            "title": "All Apps Grid",
+            "keys": [
+                "all-columns",
+                "all-icon-size",
+                "all-item-width",
+                "all-show-label"
+            ]
+        },
+        "sec_font": {
+            "type": "section",
+            "title": "Font",
+            "keys": [
+                "font-family",
+                "font-size",
+                "font-color"
+            ]
+        },
+        "sec_search": {
+            "type": "section",
+            "title": "Search Bar",
+            "keys": [
+                "search-width-percent",
+                "search-height",
+                "search-radius"
+            ]
+        },
+        "sec_favs": {
+            "type": "section",
+            "title": "Bottom Pinned Apps",
+            "keys": [
+                "fav-apps",
+                "fav-icon-size",
+                "fav-spacing",
+                "open-app-picker"
+            ]
+        },
+        "sec_info": {
+            "type": "section",
+            "title": "About Win11 Menu",
+            "keys": [
+                "info-developer",
+                "info-email",
+                "info-website",
+                "info-github",
+                "info-tel"
+            ]
+        }
+    },
+    "menu-width": {
+        "type": "spinbutton",
+        "default": 700,
+        "min": 400,
+        "max": 1200,
+        "step": 10,
+        "units": "px",
+        "description": "Menu Width"
+    },
+    "menu-height": {
+        "type": "spinbutton",
+        "default": 780,
+        "min": 500,
+        "max": 1200,
+        "step": 10,
+        "units": "px",
+        "description": "Menu Height"
+    },
+    "menu-opacity": {
+        "type": "scale",
+        "default": 0.92,
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background Opacity (Transparency)"
+    },
+    "bg-color": {
+        "type": "entry",
+        "default": "20,20,30",
+        "description": "Background Color (R,G,B — e.g. 20,20,30 for dark blue)"
+    },
+    "grid-columns": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 14,
+        "step": 1,
+        "description": "Columns (per row)"
+    },
+    "grid-icon-size": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 16,
+        "max": 96,
+        "step": 2,
+        "units": "px",
+        "description": "Icon Size"
+    },
+    "grid-item-width": {
+        "type": "spinbutton",
+        "default": 100,
+        "min": 48,
+        "max": 200,
+        "step": 4,
+        "units": "px",
+        "description": "Item Width"
+    },
+    "grid-item-padding": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 2,
+        "max": 32,
+        "step": 2,
+        "units": "px",
+        "description": "Item Padding"
+    },
+    "grid-item-radius": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 0,
+        "max": 32,
+        "step": 2,
+        "units": "px",
+        "description": "Item Corner Radius"
+    },
+    "grid-show-label": {
+        "type": "switch",
+        "default": true,
+        "description": "Show App Name Labels"
+    },
+    "app-template": {
+        "type": "combobox",
+        "default": "1",
+        "description": "App Display Template",
+        "options": {
+            "1 — Classic Grid (icon + label)": "1",
+            "2 — Bold Grid (large icon + bold name)": "2",
+            "3 — List Rows (icon + name + desc)": "3",
+            "4 — Pill Badges (rounded accent)": "4",
+            "5 — Glassmorphism Cards": "5"
+        }
+    },
+    "all-columns": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 14,
+        "step": 1,
+        "description": "All Apps — Columns"
+    },
+    "all-icon-size": {
+        "type": "spinbutton",
+        "default": 44,
+        "min": 16,
+        "max": 96,
+        "step": 2,
+        "units": "px",
+        "description": "All Apps — Icon Size"
+    },
+    "all-item-width": {
+        "type": "spinbutton",
+        "default": 110,
+        "min": 48,
+        "max": 200,
+        "step": 4,
+        "units": "px",
+        "description": "All Apps — Item Width"
+    },
+    "all-show-label": {
+        "type": "switch",
+        "default": true,
+        "description": "All Apps — Show Labels"
+    },
+    "font-family": {
+        "type": "entry",
+        "default": "Ubuntu, Segoe UI, sans-serif",
+        "description": "Font Family"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 11,
+        "min": 8,
+        "max": 24,
+        "step": 1,
+        "units": "pt",
+        "description": "Font Size"
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgba(238,238,238,1)",
+        "description": "Font Color"
+    },
+    "search-width-percent": {
+        "type": "spinbutton",
+        "default": 86,
+        "min": 40,
+        "max": 100,
+        "step": 2,
+        "units": "%",
+        "description": "Search Width (% of menu)"
+    },
+    "search-height": {
+        "type": "spinbutton",
+        "default": 42,
+        "min": 28,
+        "max": 80,
+        "step": 2,
+        "units": "px",
+        "description": "Search Height"
+    },
+    "search-radius": {
+        "type": "spinbutton",
+        "default": 22,
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "units": "px",
+        "description": "Search Corner Radius"
+    },
+    "fav-apps": {
+        "type": "entry",
+        "default": "firefox,nemo,xed,gnome-terminal",
+        "description": "Pinned Apps (comma-separated app IDs)"
+    },
+    "fav-icon-size": {
+        "type": "spinbutton",
+        "default": 26,
+        "min": 16,
+        "max": 64,
+        "step": 2,
+        "units": "px",
+        "description": "Icon Size"
+    },
+    "fav-spacing": {
+        "type": "spinbutton",
+        "default": 6,
+        "min": 0,
+        "max": 32,
+        "step": 2,
+        "units": "px",
+        "description": "Spacing Between Icons"
+    },
+    "open-app-picker": {
+        "type": "button",
+        "description": "Browse All Apps & Add to Favorites",
+        "callback": "openAppPicker",
+        "tooltip": "Open the app browser to choose and pin apps to the bottom bar"
+    },
+    "info-developer": {
+        "type": "label",
+        "description": "Developer:  SnokOS Team"
+    },
+    "info-email": {
+        "type": "label",
+        "description": "Gmail:  SnokSoft@gmail.com"
+    },
+    "info-website": {
+        "type": "label",
+        "description": "Website:  https://snokos.github.io/SnokOS/"
+    },
+    "info-github": {
+        "type": "label",
+        "description": "GitHub:  https://github.com/SnokOS"
+    },
+    "info-tel": {
+        "type": "label",
+        "description": "TEL:  +216 26 360 802"
+    }
+}

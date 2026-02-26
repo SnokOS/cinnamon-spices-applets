@@ -1,0 +1,18 @@
+{
+    "uuid": "win11-menu@snokos",
+    "name": "Win11 Menu (V1.0.1)",
+    "description": "A Start Menu replacement inspired by Windows 11",
+    "icon": "start-here-symbolic",
+    "cinnamon-version": [
+        "4.0.0",
+        "5.0.0",
+        "5.2.0",
+        "5.4.0",
+        "5.6.0",
+        "5.8.0",
+        "6.0.0",
+        "6.2.0",
+        "6.4.0"
+    ],
+    "version": "1.0.1"
+}

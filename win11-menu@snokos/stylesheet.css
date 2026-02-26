@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════
+   Win11 Menu — Premium Dark Stylesheet
+   5 Templates | Full Grid Layout
+   ═══════════════════════════════════════════════════ */
+
+.w11-box {
+    background-color: rgba(18, 18, 28, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+}
+
+/* ─── Top Bar ─────────────────────────────────────── */
+.w11-top-bar {
+    padding: 20px 22px 10px 22px;
+    spacing: 10px;
+}
+
+.w11-search {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+    border: 1px solid rgba(100, 180, 255, 0.30);
+    padding: 0 16px;
+    color: #eeeeee;
+}
+
+.w11-search:focus {
+    border-color: rgba(80, 160, 255, 0.70);
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.w11-all-apps-btn {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 8px 14px;
+    color: #90c0ff;
+}
+
+.w11-all-apps-btn:hover {
+    background-color: rgba(70, 140, 255, 0.18);
+    border-color: rgba(80, 160, 255, 0.40);
+}
+
+/* ─── Section Headers ────────────────────────────── */
+.w11-section-hdr {
+    padding: 8px 22px 4px 22px;
+}
+
+.w11-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(190, 210, 255, 0.50);
+}
+
+/* ─── Grid Scroll ────────────────────────────────── */
+.w11-grid-scroll {
+    padding: 4px 12px 10px 12px;
+}
+
+.w11-grid {
+    padding: 6px;
+}
+
+/* ─── Template 1: Classic Grid ───────────────────── */
+.w11-t1 {
+    border-radius: 10px;
+    padding: 10px 6px;
+    margin: 3px;
+    color: #e8e8e8;
+}
+
+.w11-t1:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Template 2: Bold Grid ──────────────────────── */
+.w11-t2 {
+    border-radius: 10px;
+    padding: 12px 6px;
+    margin: 4px;
+    color: #ffffff;
+}
+
+.w11-t2:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* ─── Template 3: List Rows ──────────────────────── */
+.w11-t3 {
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin: 2px 8px;
+    color: #e8e8e8;
+}
+
+.w11-t3:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Template 4: Pill / Badge ───────────────────── */
+.w11-t4 {
+    border-radius: 24px;
+    padding: 10px 8px;
+    margin: 4px;
+    color: #b0d8ff;
+    background-color: rgba(0, 110, 255, 0.10);
+    border: 1px solid rgba(50, 130, 255, 0.18);
+}
+
+.w11-t4:hover {
+    background-color: rgba(0, 110, 255, 0.22);
+    border-color: rgba(80, 160, 255, 0.40);
+}
+
+/* ─── Template 5: Glass Card ─────────────────────── */
+.w11-t5 {
+    border-radius: 10px;
+    padding: 10px 6px;
+    margin: 4px;
+    color: #ccddff;
+    background-color: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.w11-t5:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    border-color: rgba(100, 180, 255, 0.25);
+}
+
+/* ─── Bottom Bar ─────────────────────────────────── */
+.w11-bottom-bar {
+    background-color: rgba(0, 0, 0, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+    padding: 12px 20px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    spacing: 8px;
+}
+
+.w11-fav-box {
+    spacing: 6px;
+}
+
+.w11-fav-item {
+    border-radius: 8px;
+    padding: 7px;
+    color: #e8e8e8;
+}
+
+.w11-fav-item:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.w11-power-btn {
+    border-radius: 8px;
+    padding: 8px;
+    color: #e8e8e8;
+}
+
+.w11-power-btn:hover {
+    background-color: rgba(255, 50, 50, 0.18);
+    border: 1px solid rgba(255, 80, 80, 0.28);
+}
+/* ─── Category Headers (All Apps View) ─── */
+.w11-cat-hdr {
+    padding: 12px 22px 4px 22px;
+    spacing: 10px;
+}
+
+.w11-cat-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(160, 200, 255, 0.75);
+}
+
+.w11-cat-sep {
+    background-color: rgba(255, 255, 255, 0.07);
+    height: 1px;
+    margin-top: 8px;
+    border-radius: 1px;
+}
