@@ -3,6 +3,7 @@
         "type": "layout",
         "pages": [
             "page_general",
+            "page_background",
             "page_grid",
             "page_template",
             "page_allapps",
@@ -15,7 +16,15 @@
             "type": "page",
             "title": "General",
             "sections": [
-                "sec_size"
+                "sec_size",
+                "sec_panel_icon"
+            ]
+        },
+        "page_background": {
+            "type": "page",
+            "title": "Background",
+            "sections": [
+                "sec_background"
             ]
         },
         "page_grid": {
@@ -69,10 +78,24 @@
         },
         "sec_size": {
             "type": "section",
-            "title": "Menu Dimensions & Background",
+            "title": "Menu Dimensions",
             "keys": [
                 "menu-width",
-                "menu-height",
+                "menu-height"
+            ]
+        },
+        "sec_panel_icon": {
+            "type": "section",
+            "title": "Panel Icon",
+            "keys": [
+                "applet-icon",
+                "applet-icon-size"
+            ]
+        },
+        "sec_background": {
+            "type": "section",
+            "title": "Menu Background",
+            "keys": [
                 "menu-opacity",
                 "bg-color"
             ]
@@ -167,15 +190,29 @@
     "menu-opacity": {
         "type": "scale",
         "default": 0.92,
-        "min": 0.1,
+        "min": 0.0,
         "max": 1.0,
         "step": 0.05,
-        "description": "Background Opacity (Transparency)"
+        "description": "Background (Transparency) [0% to 100%]"
     },
     "bg-color": {
         "type": "entry",
         "default": "20,20,30",
         "description": "Background Color (R,G,B — e.g. 20,20,30 for dark blue)"
+    },
+    "applet-icon": {
+        "type": "iconchooser",
+        "default": "start-here-symbolic",
+        "description": "Applet Icon"
+    },
+    "applet-icon-size": {
+        "type": "spinbutton",
+        "default": 22,
+        "min": 8,
+        "max": 64,
+        "step": 1,
+        "units": "px",
+        "description": "Applet Icon Size"
     },
     "grid-columns": {
         "type": "spinbutton",

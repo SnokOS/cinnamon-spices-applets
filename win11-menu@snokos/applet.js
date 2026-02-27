@@ -67,6 +67,8 @@ Win11MenuApplet.prototype = {
                 ["fav-apps", "favApps"],
                 ["fav-icon-size", "favIconSize"],
                 ["fav-spacing", "favSpacing"],
+                ["applet-icon", "appletIcon"],
+                ["applet-icon-size", "appletIconSize"],
             ];
             binds.forEach(Lang.bind(this, function (p) {
                 this._s.bindProperty(D, p[0], p[1], cb, null);
@@ -90,6 +92,7 @@ Win11MenuApplet.prototype = {
 
             this._reload();
             this._applySettings();
+            this._applyPanelSettings();
             global.log("[Win11Menu] OK");
         } catch (e) {
             global.logError("[Win11Menu] Boot: " + e);
@@ -99,7 +102,30 @@ Win11MenuApplet.prototype = {
     // ── Settings ──────────────────────────────────────────────────────────────
     _onSettingsChanged: function () {
         this._applySettings();
+        this._applyPanelSettings();
         this._reload();
+    },
+
+    _applyPanelSettings: function () {
+        try {
+            if (this.appletIcon) {
+                if (this.appletIcon.indexOf("/") !== -1) {
+                    this.set_applet_icon_path(this.appletIcon);
+                } else {
+                    this.set_applet_icon_name(this.appletIcon);
+                }
+            }
+            if (this.appletIconSize) {
+                // Adjusting icon size on the panel
+                this._panel_height = Main.panelManager.getPanel(this.panel_id).height;
+                // Cinnamon applets usually scale icon based on panel height, 
+                // but we can try to force a size if the applet supports it or by using St.Icon properties if accessible.
+                // However, set_applet_icon_symbolic_size or similar isn't always standard for all applet types.
+                // Standard TextIconApplet uses this._applet_icon_box to hold the icon.
+            }
+        } catch (e) {
+            global.logError("[Win11Menu] applyPanelSettings: " + e);
+        }
     },
 
     _applySettings: function () {
@@ -118,7 +144,7 @@ Win11MenuApplet.prototype = {
         this.mainBox.set_size(w, h);
 
         // Apply background transparency via CSS
-        let opacity = Math.max(0.0, Math.min(1.0, this.menuOpacity || 0.92));
+        let opacity = (this.menuOpacity !== undefined) ? Math.max(0.0, Math.min(1.0, this.menuOpacity)) : 0.92;
         let bgBase = this.bgColor || "20,20,30";
         this.mainBox.set_style(
             'background-color:rgba(' + bgBase + ',' + opacity + ');' +
@@ -296,25 +322,35 @@ Win11MenuApplet.prototype = {
                 }) : allApps;
 
                 apps.forEach(Lang.bind(this, function (app) {
-                    let row = new St.Button({ style: "border-radius:6px; padding:6px 10px; text-align:left;" });
-                    let rowBox = new St.BoxLayout({ vertical: false, style: "spacing:10px;" });
+                    let appId = app.get_id().replace(/\.desktop$/, "");
+                    let current = (this.favApps || "").split(",").map(s => s.trim()).filter(s => s.length > 0);
+                    let isFav = current.indexOf(appId) !== -1;
+
+                    let row = new St.BoxLayout({ vertical: false, style: "border-radius:6px; padding:6px 10px;" });
                     let icon;
                     try { icon = app.create_icon_texture(22); } catch (e) { }
                     if (!icon) icon = new St.Icon({ icon_name: "application-x-executable", icon_size: 22 });
-                    rowBox.add_actor(icon);
-                    rowBox.add_actor(new St.Label({ text: app.get_name(), style: "color:#eee;" }));
-                    row.set_child(rowBox);
-                    row.connect("clicked", Lang.bind(this, function () {
-                        // Add to fav-apps setting
-                        let current = (this.favApps || "").split(",").map(function (s) { return s.trim(); }).filter(function (s) { return s.length > 0; });
-                        let appId = app.get_id().replace(/\.desktop$/, "");
-                        if (current.indexOf(appId) === -1 && current.indexOf(app.get_name().toLowerCase()) === -1) {
+                    row.add_actor(icon);
+
+                    let lbl = new St.Label({ text: app.get_name(), style: "color:#eee; padding-left:10px; margin-top:2px;" });
+                    row.add(lbl, { expand: true });
+
+                    let actionBtn = new St.Button({
+                        style_class: isFav ? "w11-power-btn" : "w11-all-apps-btn",
+                        style: "padding: 4px 10px;"
+                    });
+                    actionBtn.set_child(new St.Label({ text: isFav ? _("Remove") : _("Add") }));
+                    actionBtn.connect("clicked", Lang.bind(this, function () {
+                        if (isFav) {
+                            current = current.filter(id => id !== appId);
+                        } else {
                             current.push(appId);
-                            this._s.setValue("fav-apps", current.join(","));
                         }
-                        dialog.destroy();
+                        this._s.setValue("fav-apps", current.join(","));
                         this._reload();
+                        populateList(searchEntry.get_text()); // Refresh list state
                     }));
+                    row.add_actor(actionBtn);
                     list.add_actor(row);
                 }));
             });
@@ -527,21 +563,22 @@ Win11MenuApplet.prototype = {
 
     _catLabel: function (cat) {
         let map = {
-            "AudioVideo": "🎵 الصوت والفيديو",
-            "Audio": "🎵 الصوت والفيديو",
-            "Video": "🎬 الفيديو",
-            "Development": "💻 التطوير",
-            "Education": "🎓 التعليم",
-            "Game": "🎮 الألعاب",
-            "Graphics": "🖼 الرسوميات",
-            "Network": "🌐 الإنترنت والشبكة",
-            "Office": "📄 المكتب",
-            "Science": "🔬 العلوم",
-            "Settings": "⚙ الإعدادات",
-            "System": "🖥 النظام",
-            "Utility": "🔧 الأدوات",
-            "Accessibility": "♿ إمكانية الوصول",
-            "Other": "📦 أخرى"
+            "AudioVideo": "🎵 Audio Video",
+            "Audio": "🎵 Audio",
+            "Video": "🎬 Video",
+            "Development": "💻 Development",
+            "Education": "🎓 Education",
+            "Game": "🎮 Game",
+            "Graphics": "🖼 Graphics",
+            "Network": "🌐 Network",
+            "Office": "📄 Office",
+            "Science": "🔬 Science",
+            "Settings": "⚙ Settings",
+            "System": "🖥 System",
+            "Utility": "🔧 Utility",
+            "Accessibility": "♿ Accessibility",
+            "Adobe": "🖼 Adobe",
+            "Other": "📦 Other",
         };
         return map[cat] || ("📁 " + cat);
     },
@@ -554,7 +591,7 @@ Win11MenuApplet.prototype = {
                     .filter(function (c) { return c.length > 0; });
                 let known = ["AudioVideo", "Audio", "Video", "Development", "Education",
                     "Game", "Graphics", "Network", "Office", "Science",
-                    "Settings", "System", "Utility", "Accessibility"];
+                    "Settings", "System", "Utility", "Adobe", "Accessibility"];
                 for (let i = 0; i < cats.length; i++) {
                     if (known.indexOf(cats[i]) !== -1) return cats[i];
                 }
